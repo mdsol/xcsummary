@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52ED0B961F45E9260007FD69 /* JSONTestResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED0B951F45E9260007FD69 /* JSONTestResultParser.m */; };
+		52ED0B991F45FDA80007FD69 /* JSONTestInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ED0B981F45FDA80007FD69 /* JSONTestInformation.m */; };
 		A7BC74361E0052640072AD47 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BC741F1E0052640072AD47 /* NSArrayAdditions.m */; };
 		A7BC74371E0052640072AD47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BC74201E0052640072AD47 /* main.m */; };
 		A7BC74381E0052640072AD47 /* CMActivitySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BC74231E0052640072AD47 /* CMActivitySummary.m */; };
@@ -30,6 +32,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		52ED0B951F45E9260007FD69 /* JSONTestResultParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONTestResultParser.m; sourceTree = "<group>"; };
+		52ED0B971F45E9410007FD69 /* JSONTestResultParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONTestResultParser.h; sourceTree = "<group>"; };
+		52ED0B981F45FDA80007FD69 /* JSONTestInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONTestInformation.m; sourceTree = "<group>"; };
+		52ED0B9A1F45FDB00007FD69 /* JSONTestInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONTestInformation.h; sourceTree = "<group>"; };
 		A723D1D61E128315000F0F65 /* SummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SummaryTemplate.html; sourceTree = "<group>"; };
 		A7B461D31E00171C002B13B0 /* xcsummary */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xcsummary; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7BC741E1E0052640072AD47 /* NSArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayAdditions.h; sourceTree = "<group>"; };
@@ -122,6 +128,10 @@
 			children = (
 				A7BC742B1E0052640072AD47 /* CMTestSummaryParser.h */,
 				A7BC742C1E0052640072AD47 /* CMTestSummaryParser.m */,
+				52ED0B951F45E9260007FD69 /* JSONTestResultParser.m */,
+				52ED0B971F45E9410007FD69 /* JSONTestResultParser.h */,
+				52ED0B981F45FDA80007FD69 /* JSONTestInformation.m */,
+				52ED0B9A1F45FDB00007FD69 /* JSONTestInformation.h */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -233,7 +243,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52ED0B961F45E9260007FD69 /* JSONTestResultParser.m in Sources */,
 				A7BC743D1E0052640072AD47 /* CMHTMLReportBuilder.m in Sources */,
+				52ED0B991F45FDA80007FD69 /* JSONTestInformation.m in Sources */,
 				A7BC74371E0052640072AD47 /* main.m in Sources */,
 				A7BC74381E0052640072AD47 /* CMActivitySummary.m in Sources */,
 				A7BC743C1E0052640072AD47 /* CMTestSummaryParser.m in Sources */,

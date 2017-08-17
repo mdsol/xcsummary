@@ -1,8 +1,55 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script
+            src="http://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
         <meta charset="UTF-8">
         <title></title>
+        <style>
+            .activity.hidden {
+                display: none;
+            }
+        
+            .test-case.failed .test-title {
+                background-color: #FF627C;
+            }
+
+            .test-case.passed .test-title {
+                background-color: #CBF4A3;
+            }
+        
+            .test-scenario {
+                white-space: pre-wrap;
+                padding: 10px;
+                background: #f2f2f2;
+                font-family: helvetica;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        
+            .test-title {
+                padding: 10px;
+            }
+            
+            .test-summary {
+                padding: 10px;
+            }
+        </style>
+        <script>
+            $(function() {
+                $('.test-case').on('click', function() {
+                    if($(this).hasClass('collapsed')) {
+                                   $(this).nextUntil('.test-case').removeClass('hidden');
+                                   $(this).removeClass('collapsed');
+                    } else {
+                                   $(this).nextUntil('.test-case').addClass('hidden');
+                                   $(this).addClass('collapsed');
+                    }
+                })
+            });
+        </script>
     </head>
     <body>
         %@
