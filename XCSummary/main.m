@@ -43,8 +43,6 @@ int main(int argc, const char * argv[]) {
         [currentPath appendString:@"/testoutput.json"];
         JSONTestResultParser *testInformationParser = [[JSONTestResultParser alloc] initWithFilePath:currentPath];
         
-        
-        
         BOOL showSuccess = CMSummaryValueExists(arguments, @"-show_success");
         CMHTMLReportBuilder *builder = [[CMHTMLReportBuilder alloc] initWithAttachmentsPath:attachmentsPath
                                                                                 resultsPath:output.stringByExpandingTildeInPath

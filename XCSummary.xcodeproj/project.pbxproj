@@ -57,7 +57,6 @@
 		A7BC74321E0052640072AD47 /* CMHTMLReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLReportBuilder.m; sourceTree = "<group>"; };
 		A7BC74331E0052640072AD47 /* Template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Template.html; sourceTree = "<group>"; };
 		A7BC74341E0052640072AD47 /* TestCaseTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TestCaseTemplate.html; sourceTree = "<group>"; };
-		A7BC74351E0052640072AD47 /* TestCaseTemplateFailed.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TestCaseTemplateFailed.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +143,6 @@
 				A7BC742F1E0052640072AD47 /* ActivityTemplateWithImage.html */,
 				A7BC74301E0052640072AD47 /* ActivityTemplateWithoutImage.html */,
 				A7BC74341E0052640072AD47 /* TestCaseTemplate.html */,
-				A7BC74351E0052640072AD47 /* TestCaseTemplateFailed.html */,
 				A7BC74331E0052640072AD47 /* Template.html */,
 				A723D1D61E128315000F0F65 /* SummaryTemplate.html */,
 			);
