@@ -11,6 +11,8 @@
 #import "CMTestableSummary.h"
 #import "CMActivitySummary.h"
 #import "TemplateGeneratedHeader.h"
+#import "JSONTestResultParser.h"
+#import "JSONTestInformation.h"
 
 @interface CMHTMLReportBuilder ()
 
@@ -24,12 +26,15 @@
 
 @property (nonatomic, strong) NSDateComponentsFormatter *timeFormatter;
 
+@property (nonatomic, strong) JSONTestResultParser *testParser;
+
 @end
 
 @implementation CMHTMLReportBuilder
 
 - (instancetype)initWithAttachmentsPath:(NSString *)path
                             resultsPath:(NSString *)resultsPath
+                  testInformationParser:(JSONTestResultParser *)testInformationParser
                        showSuccessTests:(BOOL)showSuccessTests
 {
     self = [super init];
@@ -41,6 +46,7 @@
         _htmlResourcePath = [[resultsPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"resources"];
         _resultString = [NSMutableString new];
         _showSuccessTests = showSuccessTests;
+        _testParser = testInformationParser;
         [self _prepareResourceFolder];
     }
     return self;
@@ -115,10 +121,20 @@
 
 - (void)_appendTestCase:(CMTest *)testCase indentation:(CGFloat)indentation
 {
-    NSString *templateFormat = testCase.status == CMTestStatusFailure ?
-    [self _decodeTemplateWithName:TestCaseTemplateFailed] :
-    [self _decodeTemplateWithName:TestCaseTemplate];
-    NSString *composedString = [NSString stringWithFormat:templateFormat, indentation, @"px", testCase.testName, testCase.duration];
+    NSString *templateFormat = [self _decodeTemplateWithName:TestCaseTemplate];
+    
+    JSONTestInformation *testInfo = [self.testParser informationForTest:testCase.testName];
+    
+    NSString *mcc = @"";
+    NSString *summary = @"";
+    NSString *statusClass = (testCase.status == CMTestStatusFailure) ? @"failed" : @"passed";
+    
+    if (testCase.activities.count > 0) {
+        summary = [NSString stringWithFormat:@"<div class=\"test-scenario\">%@</div>", testInfo.scenario];
+        mcc = [testInfo.mcc stringByAppendingString:@" - "];
+    }
+    
+    NSString *composedString = [NSString stringWithFormat:templateFormat, statusClass, indentation, mcc, testCase.testName, summary, testCase.duration];
     [self.resultString appendString:composedString];
 }
 

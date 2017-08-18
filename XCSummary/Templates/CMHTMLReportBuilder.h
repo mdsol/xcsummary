@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class CMTestableSummary, CMTest;
+@class CMTestableSummary, CMTest, JSONTestResultParser;
 @interface CMHTMLReportBuilder : NSObject
 
 /**
@@ -21,6 +21,7 @@
  */
 - (instancetype)initWithAttachmentsPath:(NSString *)path
                             resultsPath:(NSString *)resultsPath
+                  testInformationParser:(JSONTestResultParser *)testInformationParser
                        showSuccessTests:(BOOL)showSuccessTests;
 
 /**

@@ -11,6 +11,7 @@
 #import "CMHTMLReportBuilder.h"
 #import "CMTestableSummary.h"
 #import "CMTest.h"
+#import "JSONTestResultParser.h"
 
 NSString *CMSummaryGetValue(NSArray *arguments, NSString *argument);
 BOOL CMSummaryValueExists(NSArray *arguments, NSString *argument);
@@ -37,9 +38,15 @@ int main(int argc, const char * argv[]) {
         CMTestSummaryParser *parser = [[CMTestSummaryParser alloc] initWithPath:summaryPath];
         NSArray *summaries = [parser testSummaries];
         
+        NSFileManager *fileManager = [[NSFileManager alloc] init];
+        NSMutableString *currentPath = [[fileManager currentDirectoryPath] mutableCopy];
+        [currentPath appendString:@"/testoutput.json"];
+        JSONTestResultParser *testInformationParser = [[JSONTestResultParser alloc] initWithFilePath:currentPath];
+        
         BOOL showSuccess = CMSummaryValueExists(arguments, @"-show_success");
         CMHTMLReportBuilder *builder = [[CMHTMLReportBuilder alloc] initWithAttachmentsPath:attachmentsPath
                                                                                 resultsPath:output.stringByExpandingTildeInPath
+                                                                      testInformationParser:testInformationParser
                                                                            showSuccessTests:showSuccess];
         [builder appendSummaries:summaries];
         [summaries enumerateObjectsUsingBlock:^(CMTestableSummary *summary, NSUInteger idx, BOOL * _Nonnull stop) {
