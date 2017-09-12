@@ -154,10 +154,10 @@
 - (void)_appendActivities:(NSArray *)activities indentation:(CGFloat)indentation
 {
     [activities enumerateObjectsUsingBlock:^(CMActivitySummary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![obj.title isEqualToString:@"Synthesize event"]) {
-            [self _appendActivity:obj indentation:indentation];
-        }
-
+        if ([obj.title isEqualToString:@"Synthesize event"])
+            return;
+        
+        [self _appendActivity:obj indentation:indentation];
         [self _appendActivities:obj.subActivities indentation:indentation + 50];
     }];
 }
