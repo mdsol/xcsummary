@@ -32,6 +32,8 @@ int main(int argc, const char * argv[]) {
             return EXIT_FAILURE;
         }
         
+        NSString *excludeBundle = CMSummaryGetValue(arguments, @"-exclude");
+        
         NSString *summaryPath = [input stringByExpandingTildeInPath];
         NSString *attachmentsPath = [[summaryPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Attachments"];
         
@@ -47,7 +49,8 @@ int main(int argc, const char * argv[]) {
         CMHTMLReportBuilder *builder = [[CMHTMLReportBuilder alloc] initWithAttachmentsPath:attachmentsPath
                                                                                 resultsPath:output.stringByExpandingTildeInPath
                                                                       testInformationParser:testInformationParser
-                                                                           showSuccessTests:showSuccess];
+                                                                           showSuccessTests:showSuccess
+                                                                         excludedTestBundle:excludeBundle];
         [builder appendSummaries:summaries];
         [summaries enumerateObjectsUsingBlock:^(CMTestableSummary *summary, NSUInteger idx, BOOL * _Nonnull stop) {
             [builder appendTests:summary.tests indentation:10.0f];

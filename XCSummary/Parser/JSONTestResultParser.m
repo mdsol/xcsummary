@@ -14,7 +14,7 @@
     NSDictionary *testInformation;
 }
 
-- (instancetype)initWithFilePath:(NSString *)path {    
+- (instancetype)initWithFilePath:(NSString *)path {
     self = [super init];
     
     if (self) {

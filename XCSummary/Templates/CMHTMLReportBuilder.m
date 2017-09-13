@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableString *resultString;
 @property (nonatomic, strong) NSFileManager *fileManager;
 @property (nonatomic) BOOL showSuccessTests;
+@property (nonatomic, strong) NSString *excludedTestBundle;
 
 @property (nonatomic, strong) NSDateComponentsFormatter *timeFormatter;
 
@@ -36,6 +37,7 @@
                             resultsPath:(NSString *)resultsPath
                   testInformationParser:(JSONTestResultParser *)testInformationParser
                        showSuccessTests:(BOOL)showSuccessTests
+                      excludedTestBundle:(NSString *)excludedTestBundle
 {
     self = [super init];
     if (self)
@@ -47,6 +49,7 @@
         _resultString = [NSMutableString new];
         _showSuccessTests = showSuccessTests;
         _testParser = testInformationParser;
+        _excludedTestBundle = excludedTestBundle;
         [self _prepareResourceFolder];
     }
     return self;
@@ -81,9 +84,19 @@
 
 - (void)appendTests:(NSArray *)tests indentation:(CGFloat)indentation
 {
+
     [tests enumerateObjectsUsingBlock:^(CMTest * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
+
+        // Exclude the specified test bundle (e.g. UnitTests.xctest)
+        if ([obj.testName isEqualToString:@"All tests"]) {
+            CMTest *firstTest = obj.subTests.firstObject;
+
+            if ([[firstTest testName] isEqualToString:_excludedTestBundle])
+                return;
+        }
+
         [self _appendTestCase:obj indentation:indentation];
+        
         if (obj.subTests.count > 0)
         {
             [self appendTests:obj.subTests indentation:indentation + 50];
@@ -141,6 +154,9 @@
 - (void)_appendActivities:(NSArray *)activities indentation:(CGFloat)indentation
 {
     [activities enumerateObjectsUsingBlock:^(CMActivitySummary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.title isEqualToString:@"Synthesize event"])
+            return;
+        
         [self _appendActivity:obj indentation:indentation];
         [self _appendActivities:obj.subActivities indentation:indentation + 50];
     }];

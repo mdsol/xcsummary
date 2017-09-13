@@ -22,7 +22,8 @@
 - (instancetype)initWithAttachmentsPath:(NSString *)path
                             resultsPath:(NSString *)resultsPath
                   testInformationParser:(JSONTestResultParser *)testInformationParser
-                       showSuccessTests:(BOOL)showSuccessTests;
+                       showSuccessTests:(BOOL)showSuccessTests
+                     excludedTestBundle:(NSString *)excludedTestBundle;
 
 /**
  Appends summaries info as a header
