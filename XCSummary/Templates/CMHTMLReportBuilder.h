@@ -23,7 +23,8 @@
                             resultsPath:(NSString *)resultsPath
                   testInformationParser:(JSONTestResultParser *)testInformationParser
                        showSuccessTests:(BOOL)showSuccessTests
-                     excludedTestBundle:(NSString *)excludedTestBundle;
+                     excludedTestBundle:(NSString *)excludedTestBundle
+                             executedBy:(NSString *)executedBy;
 
 /**
  Appends summaries info as a header

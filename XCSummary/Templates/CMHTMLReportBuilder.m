@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSFileManager *fileManager;
 @property (nonatomic) BOOL showSuccessTests;
 @property (nonatomic, strong) NSString *excludedTestBundle;
+@property (nonatomic, strong) NSString *executedBy;
 
 @property (nonatomic, strong) NSDateComponentsFormatter *timeFormatter;
 
@@ -38,6 +39,7 @@
                   testInformationParser:(JSONTestResultParser *)testInformationParser
                        showSuccessTests:(BOOL)showSuccessTests
                       excludedTestBundle:(NSString *)excludedTestBundle
+                             executedBy:(NSString *)executedBy
 {
     self = [super init];
     if (self)
@@ -50,6 +52,7 @@
         _showSuccessTests = showSuccessTests;
         _testParser = testInformationParser;
         _excludedTestBundle = excludedTestBundle;
+        _executedBy = executedBy;
         [self _prepareResourceFolder];
     }
     return self;
@@ -78,7 +81,7 @@
     NSString *templateFormat = [self _decodeTemplateWithName:SummaryTemplate];
     NSTimeInterval totalTime = [[summaries valueForKeyPath:@"@sum.totalDuration"] doubleValue];
     NSString *timeString = [self.timeFormatter stringFromTimeInterval:totalTime];
-    NSString *header = [NSString stringWithFormat:templateFormat, successfullTests + failedTests, timeString, successfullTests, failuresPresent ? @"inline": @"none", failedTests];
+    NSString *header = [NSString stringWithFormat:templateFormat, successfullTests + failedTests, timeString, successfullTests, failuresPresent ? @"inline": @"none", failedTests, self.executedBy];
     [self.resultString appendString:header];
 }
 
