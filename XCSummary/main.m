@@ -33,6 +33,7 @@ int main(int argc, const char * argv[]) {
         }
         
         NSString *excludeBundle = CMSummaryGetValue(arguments, @"-exclude");
+        NSString *executorName = CMSummaryGetValue(arguments, @"-executedBy");
         
         NSString *summaryPath = [input stringByExpandingTildeInPath];
         NSString *attachmentsPath = [[summaryPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Attachments"];
@@ -50,7 +51,8 @@ int main(int argc, const char * argv[]) {
                                                                                 resultsPath:output.stringByExpandingTildeInPath
                                                                       testInformationParser:testInformationParser
                                                                            showSuccessTests:showSuccess
-                                                                         excludedTestBundle:excludeBundle];
+                                                                         excludedTestBundle:excludeBundle
+                                                                                 executedBy:executorName];
         [builder appendSummaries:summaries];
         [summaries enumerateObjectsUsingBlock:^(CMTestableSummary *summary, NSUInteger idx, BOOL * _Nonnull stop) {
             [builder appendTests:summary.tests indentation:10.0f];
