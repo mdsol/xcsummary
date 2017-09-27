@@ -12,11 +12,12 @@
 @interface JSONTestInformation : NSObject 
 
 @property NSString * name;
+@property NSString * summary;
 @property NSString * mcc;
 @property NSString * scenario;
 @property NSString * tags;
 
-- (id)initWithName:(NSString *)name mcc:(NSString *)mcc scenario:(NSString *)scenario tags:(NSString *)tags;
+- (id)initWithName:(NSString *)name mcc:(NSString *)mcc summary:(NSString *)summary scenario:(NSString *)scenario tags:(NSString *)tags;
 
 @end
 

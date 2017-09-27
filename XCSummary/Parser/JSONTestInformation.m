@@ -11,12 +11,13 @@
 
 @implementation JSONTestInformation
 
-- (id)initWithName:(NSString *)name mcc:(NSString *)mcc scenario:(NSString *)scenario tags:(NSString *)tags {
+- (id)initWithName:(NSString *)name mcc:(NSString *)mcc summary:(NSString *)summary scenario:(NSString *)scenario tags:(NSString *)tags {
     
     self = [super init];
     
     if (self) {
         _name = name;
+        _summary = summary;
         _mcc = mcc;
         _scenario = scenario;
         _tags = tags;
