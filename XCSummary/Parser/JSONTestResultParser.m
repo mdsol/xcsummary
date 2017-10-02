@@ -29,7 +29,7 @@
 
 - (JSONTestInformation *)informationForTest:(NSString *)testName {
     NSDictionary *testDetails = testInformation[testName];
-    JSONTestInformation *info = [[JSONTestInformation alloc] initWithName:testDetails[@"Name"] mcc:testDetails[@"MCC"] scenario:testDetails[@"Scenario"] tags:testDetails[@"Tags"]];
+    JSONTestInformation *info = [[JSONTestInformation alloc] initWithName:testDetails[@"Name"] mcc:testDetails[@"MCC"] summary:testDetails[@"Summary"] scenario:testDetails[@"Scenario"] tags:testDetails[@"Tags"]];
     
     return info;
 }

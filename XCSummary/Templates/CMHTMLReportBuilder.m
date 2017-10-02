@@ -142,15 +142,17 @@
     JSONTestInformation *testInfo = [self.testParser informationForTest:testCase.testName];
     
     NSString *mcc = @"";
-    NSString *summary = @"";
+    NSString *summary = testCase.testName;
+    NSString *scenario = @"";
     NSString *statusClass = (testCase.status == CMTestStatusFailure) ? @"failed" : @"passed";
     
     if (testCase.activities.count > 0) {
-        summary = [NSString stringWithFormat:@"<div class=\"test-scenario\">%@</div>", testInfo.scenario];
-        mcc = [testInfo.mcc stringByAppendingString:@" - "];
+        scenario = [NSString stringWithFormat:@"<div class=\"test-scenario\">%@</div>", testInfo.scenario];
+        mcc = [testInfo.mcc stringByAppendingString:@" : "];
+        summary = testInfo.summary;
     }
     
-    NSString *composedString = [NSString stringWithFormat:templateFormat, statusClass, indentation, mcc, testCase.testName, summary, testCase.duration];
+    NSString *composedString = [NSString stringWithFormat:templateFormat, statusClass, indentation, mcc, summary, scenario, testCase.duration];
     [self.resultString appendString:composedString];
 }
 
