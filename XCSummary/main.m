@@ -27,8 +27,10 @@ int main(int argc, const char * argv[]) {
         
         NSString *input = CMSummaryGetValue(arguments, @"-in");
         NSString *output = CMSummaryGetValue(arguments, @"-out");
-        if (!input || !output) {
-            NSLog(@"-in or -out was not provided %@", arguments);
+        NSString *scribeJson =
+        CMSummaryGetValue(arguments, @"-scribe");
+        if (!input || !output || !scribeJson ) {
+            NSLog(@"-in or -out or -scribe was not provided %@", arguments);
             return EXIT_FAILURE;
         }
         
@@ -40,11 +42,10 @@ int main(int argc, const char * argv[]) {
         
         CMTestSummaryParser *parser = [[CMTestSummaryParser alloc] initWithPath:summaryPath];
         NSArray *summaries = [parser testSummaries];
+ 
+        NSString *jsonPath =  [scribeJson stringByExpandingTildeInPath];
         
-        NSFileManager *fileManager = [[NSFileManager alloc] init];
-        NSMutableString *currentPath = [[fileManager currentDirectoryPath] mutableCopy];
-        [currentPath appendString:@"/testoutput.json"];
-        JSONTestResultParser *testInformationParser = [[JSONTestResultParser alloc] initWithFilePath:currentPath];
+        JSONTestResultParser *testInformationParser = [[JSONTestResultParser alloc] initWithFilePath:jsonPath];
         
         BOOL showSuccess = CMSummaryValueExists(arguments, @"-show_success");
         CMHTMLReportBuilder *builder = [[CMHTMLReportBuilder alloc] initWithAttachmentsPath:attachmentsPath
